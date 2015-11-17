@@ -1,14 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Model;
 
-/**
- *
- * @author carlos
- */
+
 public class entQuarto {
+     //Declaração dos atributos
+    double preco;
+    int numero;
+    String descricao;
     
+    //construtor
+    public entQuarto (double pPreco, int pNumero, String pDescricao){
+       setPreco (pPreco);
+       setNumero (pNumero);
+       setDescricao (pDescricao);
+    }
+    //gets e seters
+    public void setPreco (double pPreco) {
+        preco = pPreco;
+    }
+    public void setNumero (int pNumero) {
+        numero = pNumero;
+    }
+     public void setDescricao (String pDescricao) {
+         descricao = pDescricao;
+    }
+     
+    public double getPreco () {
+       return preco;
+    }
+    public int getNumero () {
+        return numero;
+    }
+     public String getDescricao () {
+         return descricao ;
+    }
+   //outros metodos
 }

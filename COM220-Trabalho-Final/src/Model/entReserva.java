@@ -1,14 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Model;
 
-/**
- *
- * @author carlos
- */
+import java.util.Date;
+
+
 public class entReserva {
+        //Declaração dos atributos
+    Date dataIn;
+    Date dateOut;
+    String descricao;
     
+    //construtores
+    public entReserva (Date pDateIn, Date pDateOut, String pDescricao){
+       setDatain (pDateIn);
+       setDataOut (pDateOut);
+       setDescricao (pDescricao);
+    }
+    //gets e seters
+    public void setDatain (Date pDateIn) {
+        dataIn = pDateIn;
+    }
+    public void setDataOut (Date pDateOut) {
+         dateOut = pDateOut;
+    }
+     public void setDescricao (String pDescricao) {
+         descricao = pDescricao;
+    }
+     
+    public Date getDatain () {
+        return dataIn;
+    }
+    public Date getDataOut () {
+        return  dateOut;
+    }
+     public String getDescricao () {
+         return descricao ;
+    }
+   //outros metodos
 }
