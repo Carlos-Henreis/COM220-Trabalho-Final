@@ -1,41 +1,40 @@
 package Model;
 
-import Model.endereco.Endereco;
 
 public class entCliente {
 
     
     //Declaração dos atributos
-    Endereco endereco;
+     //Declaração dos atributos
     int telefone;
-    String descricao;
+    String endereco;
+    String nome;
     
     //construtor
-    /*public entCliente (double pPreco, int pNumero, String pDescricao){
-       setPreco (pPreco);
-       setNumero (pNumero);
-       setDescricao (pDescricao);
+    public entCliente (int pTelefone, String pEndereco, String pNome){
+       setTelefone (pTelefone);
+       setEndereco (pEndereco);
+       setNome (pNome);
     }
     //gets e seters
-    public void setPreco (double pPreco) {
-        preco = pPreco;
+    public void setTelefone (int pTelefone) {
+        telefone = pTelefone;
     }
-    public void setNumero (int pNumero) {
-        numero = pNumero;
+    public void setEndereco (String pEndereco) {
+        endereco = pEndereco;
     }
-     public void setDescricao (String pDescricao) {
-         descricao = pDescricao;
+     public void setNome (String pNome) {
+        nome = pNome;
     }
      
-    public double getPreco () {
-       return preco;
+    public int getTelefone () {
+       return telefone;
     }
-    public int getNumero () {
-        return numero;
+    public String getEndereco () {
+        return endereco;
     }
-     public String getDescricao () {
-         return descricao ;
+     public String getNome () {
+         return nome ;
     }
-     */
     
 }
