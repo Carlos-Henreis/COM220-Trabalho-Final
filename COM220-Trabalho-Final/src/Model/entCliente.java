@@ -11,19 +11,26 @@ public class entCliente {
     String endereco[];
     
     //construtor
-    public entCliente (int pTelefone, String[] pEndereco, String pNome, int pCpf){
+    public entCliente (int pTelefone,String pCEP, String pCidade, String pRua,String pNumero, String pNome, int pCpf){
        setTelefone (pTelefone);
-       setEndereco (pEndereco);
+       setEndereco (pCEP, pCidade, pRua, pNumero);
        setNome (pNome);
        setCpf (pCpf);
+    }
+
+    public entCliente() {
+        
     }
     //gets e seters
     public void setTelefone (int pTelefone) {
         telefone = pTelefone;
     }
-    public void setEndereco (String[] pEndereco) {
+    public void setEndereco (String pCEP, String pCidade, String pRua,String pNumero) {
         endereco = new String[4];//CEP, Cidade, Rua, Numero
-        endereco = pEndereco;
+        endereco[0] = pCEP;
+        endereco[1] = pCidade;
+        endereco[2] = pRua;
+        endereco[3] = pNumero;
     }
      public void setNome (String pNome) {
         nome = pNome;
