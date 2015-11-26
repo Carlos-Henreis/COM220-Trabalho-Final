@@ -38,6 +38,7 @@ public class ctrCliente {
     }
     
     private void salva() {
+        
     }
     
     public void addVetor(entCliente pCliente) {
@@ -82,7 +83,7 @@ public class ctrCliente {
             }
         }
         return result;
-	}
+    }
 }
 
 
