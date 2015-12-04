@@ -1,8 +1,8 @@
-
 package Model;
 
+import java.io.Serializable;
 
-public class entQuarto {
+public class entQuarto implements Serializable{
      //Declaração dos atributos
     double preco;
     int numero;
@@ -13,6 +13,10 @@ public class entQuarto {
        setPreco (pPreco);
        setNumero (pNumero);
        setDescricao (pDescricao);
+    }
+
+    public entQuarto() {
+        
     }
     //gets e seters
     public void setPreco (double pPreco) {
@@ -34,5 +38,4 @@ public class entQuarto {
      public String getDescricao () {
          return descricao ;
     }
-   //outros metodos
 }

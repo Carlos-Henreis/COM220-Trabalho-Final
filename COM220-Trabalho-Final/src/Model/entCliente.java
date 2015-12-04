@@ -1,17 +1,18 @@
 package Model;
 
+import java.io.Serializable;
 
-public class entCliente {
+public class entCliente implements Serializable {
 
     
     //Declaração dos atributos
-    int cpf;
-    int telefone;
+    String cpf;
+    String telefone;
     String nome;
-    String endereco[];
+    String endereco[] = new String[4];//CEP, Cidade, Rua, Numero;
     
     //construtor
-    public entCliente (int pTelefone,String pCEP, String pCidade, String pRua,String pNumero, String pNome, int pCpf){
+    public entCliente (String pTelefone,String pCEP, String pCidade, String pRua,String pNumero, String pNome, String pCpf){
        setTelefone (pTelefone);
        setEndereco (pCEP, pCidade, pRua, pNumero);
        setNome (pNome);
@@ -22,11 +23,10 @@ public class entCliente {
         
     }
     //gets e seters
-    public void setTelefone (int pTelefone) {
+    public void setTelefone (String pTelefone) {
         telefone = pTelefone;
     }
     public void setEndereco (String pCEP, String pCidade, String pRua,String pNumero) {
-        endereco = new String[4];//CEP, Cidade, Rua, Numero
         endereco[0] = pCEP;
         endereco[1] = pCidade;
         endereco[2] = pRua;
@@ -36,11 +36,11 @@ public class entCliente {
         nome = pNome;
     }
     
-    public void setCpf (int pCpf){
+    public void setCpf (String pCpf){
         cpf = pCpf;
     }
      
-    public int getTelefone () {
+    public String getTelefone () {
        return telefone;
     }
     public String[] getEndereco () {
@@ -50,7 +50,7 @@ public class entCliente {
          return nome ;
     }
      
-    public int getCpf (){
+    public String getCpf (){
         return cpf;
     }
     

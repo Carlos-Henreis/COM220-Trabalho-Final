@@ -10,16 +10,26 @@ import javax.swing.JOptionPane;
  */
 public class limCliente {
     
+    String pCPFCliente;
+    
      public String[] montaForm() {
-        String aDadosForm[] = new String[7];
-        aDadosForm[0] = JOptionPane.showInputDialog("Digite Seu CPF");
-        aDadosForm[1] = JOptionPane.showInputDialog("Telefone");
-        aDadosForm[2] = JOptionPane.showInputDialog("Nome");
-        aDadosForm[3] = JOptionPane.showInputDialog("CEP");
-        aDadosForm[4] = JOptionPane.showInputDialog("CIdade");
-        aDadosForm[5] = JOptionPane.showInputDialog("Rua");
-        aDadosForm[6] = JOptionPane.showInputDialog("Número");
+        String aDadosForm[] = new String[6];
+        aDadosForm[0] = JOptionPane.showInputDialog("Telefone");
+        aDadosForm[1] = JOptionPane.showInputDialog("Nome");
+        aDadosForm[2] = JOptionPane.showInputDialog("CEP");
+        aDadosForm[3] = JOptionPane.showInputDialog("CIdade");
+        aDadosForm[4] = JOptionPane.showInputDialog("Rua");
+        aDadosForm[5] = JOptionPane.showInputDialog("Número");
         return aDadosForm;
     }
+     
+     public String montaFormDadosCPF(){
+        pCPFCliente = JOptionPane.showInputDialog("Digite o CPF do clinte");
+        return pCPFCliente;
+    }
+     
+     public void montaFormaCpfInvalido() {
+         JOptionPane.showMessageDialog(null, "CPF já cadastrado informe outro");
+     }
     
 }

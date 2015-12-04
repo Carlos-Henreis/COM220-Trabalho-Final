@@ -1,16 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package View;
 
-import Model.*;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author carlos
- */
 public class limQuarto {
+    public String[] montaForm() {
+        String aDadosForm[] = new String[3];
+        aDadosForm[0] = JOptionPane.showInputDialog("Digite Seu Numero");
+        aDadosForm[1] = JOptionPane.showInputDialog("Preco");
+        aDadosForm[2] = JOptionPane.showInputDialog("Descrição");
+        return aDadosForm;
+    }
     
 }

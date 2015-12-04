@@ -12,31 +12,43 @@ import java.util.Vector;
 public class ctrCliente {
     
     //Declaração dos atributos
+    private ctrPrincipal objCtrPrincipal;
     private limCliente objALimCliente = new limCliente();
     private entCliente objAEntCliente;
     private String[] aDadosForm;
     private Vector vecClientes = new Vector();
     private final String arquivo = "Clientes_cad.dat";
     
-    public ctrCliente() throws Exception {
+    public ctrCliente(ctrPrincipal pCtrPrincipal) throws Exception {
+        objCtrPrincipal = pCtrPrincipal;
         desserializaCliente();
     }
     
     public boolean cadastrarCliente() {
         objAEntCliente = new entCliente();
-        cadastra();
-        objAEntCliente.setCpf(Integer.parseInt(aDadosForm[0]));
-        objAEntCliente.setTelefone(Integer.parseInt(aDadosForm[1]));
-        objAEntCliente.setNome(aDadosForm[3]);
-        objAEntCliente.setEndereco(aDadosForm[4], aDadosForm[5], aDadosForm[6], aDadosForm[7]);
+        do{
+            objAEntCliente.setCpf(objALimCliente.montaFormDadosCPF());
+            if (!CPF_Val(objAEntCliente.getCpf())){
+                objALimCliente.montaFormaCpfInvalido();
+            }   
+        }while (!CPF_Val(objAEntCliente.getCpf()));
+        aDadosForm = objALimCliente.montaForm();
+        objAEntCliente.setTelefone(aDadosForm[0]);
+        objAEntCliente.setNome(aDadosForm[1]);
+        objAEntCliente.setEndereco(aDadosForm[2], aDadosForm[3], aDadosForm[4], aDadosForm[5]);
         addVetor(objAEntCliente);
         return true;
     }
     
-    private void cadastra() {
-        aDadosForm = objALimCliente.montaForm();
+    private boolean CPF_Val(String pCpfClinte) {
+        Vector Clientes = new Vector();
+        Clientes =  objCtrPrincipal.getObjCtrCliente().getListaClientes();
+        for (int i = 0; i < Clientes.size(); i++){
+             if(pCpfClinte.equals(((entCliente)Clientes.elementAt(i)).getCpf()))
+                 return false;
+        }
+        return true;
     }
-    
     private void salva() {
         
     }
