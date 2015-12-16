@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package View;
 
 import Model.*;
@@ -18,50 +14,15 @@ public class limReserva {
     private Date aDateIn;
     private Date aDateOut;
     private double aDesconto;
+    private String aNumero;
     private Vector vecQuartosSelecionadas;
-    private Vector vecADadosForm = new Vector();
 
-    
-    public Vector montaForm(String pCPFCliente) throws ParseException {
-        montaFormDadosReserva();
-        vecADadosForm.add(0, pCPFCliente);
-        vecADadosForm.add(1 ,aDateIn);
-        vecADadosForm.add(2 ,aDateOut);
-        vecADadosForm.add(3 ,aDesconto);
-        return vecADadosForm;
-    }
-    
-    public String montaFormDadosCPF(){
-        pCPFCliente = JOptionPane.showInputDialog("Digite o CPF do clinte");
-        return pCPFCliente;
-    }
-    
-    
-    private void montaFormDadosReserva() throws ParseException {
-        Date hoje = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        do{
-            aDateIn = formatter.parse(JOptionPane.showInputDialog("Digite a data de entrada"));
-            if (0<(int) ((hoje.getTime() - aDateIn.getTime()) / 86400000L)){
-                JOptionPane.showMessageDialog(null, "Data inválida (tem que ser maior ou igual a"+hoje+")");
-            }
-        }while(0<(int) ((hoje.getTime() - aDateIn.getTime()) / 86400000L));
-        do{
-            aDateOut = formatter.parse(JOptionPane.showInputDialog("Digite a data de Saida"));
-            if (0<(int) ((aDateIn.getTime() - aDateOut.getTime()) / 86400000L)){
-                JOptionPane.showMessageDialog(null, "Data inválida (tem que ser maior ou igual a"+aDateIn+")");
-            }
-        }while(0<(int) ((aDateIn.getTime() - aDateOut.getTime()) / 86400000L));
-        aDesconto = Double.parseDouble(JOptionPane.showInputDialog("Digite o deconto"));//O Gerente que irá definir
-    }
-    
-    
-    public boolean montaFormDadosQuartos (Vector vecQuartosDis) {
+    public Vector montaFormDadosQuartos (Vector vecQuartosDis) {
     	vecQuartosSelecionadas = new Vector();
     	String QuartoSel, Quarto = "";
          if (vecQuartosDis.size() == 0){
             JOptionPane.showMessageDialog(null, "Não existe quartos disponiveis para o periodo Reserva não efetuada");
-            return false;
+            return null;
         }
         for (int i = 0; i < vecQuartosDis.size(); i++) {
             Quarto += ((entQuarto) vecQuartosDis.elementAt(i)).getNumero();
@@ -74,11 +35,22 @@ public class limReserva {
             }
             vecQuartosSelecionadas.add(QuartoSel);
         }
-        vecADadosForm.add(4, vecQuartosSelecionadas);
-        return true;
+        return vecQuartosSelecionadas;
     }
     
-     public void montaFormaNovoCliente() {
+     public void montaFormaDataOut(Date Data) {
+        JOptionPane.showMessageDialog(null, "Data inválida (tem que ser maior ou igual a"+Data+")");
+    }
+    
+    public void montaFormaDataIn(Date hoje) {
+        JOptionPane.showMessageDialog(null, "Data inválida (tem que ser maior ou igual a"+hoje+")");
+    }
+    
+    public void montaFormaNum() {
+         JOptionPane.showMessageDialog(null, "Numero da reserva já existe digite outro");
+    }
+    
+    public void montaFormaNovoCliente() {
          JOptionPane.showMessageDialog(null, "Cliente não cadastrado. Iremos fazer o cadastro");
      }
      
@@ -86,5 +58,35 @@ public class limReserva {
         JOptionPane.showMessageDialog(null, "Cliente já possui cadastrado. Iremos Proceder com a reserva");
     }
     
+    public void geraFomaDesconto () {
+        JOptionPane.showMessageDialog(null, "Desconto concedido para as próximas reservas");
+    }
+ 
+    public void montaFormaNovoPagamento() {
+         JOptionPane.showMessageDialog(null, "O cliente deve efetuar o pagamento agora senão a reserva vai ser cancelada");
+    }
+    
+    public Vector MontaFormperiodo () throws ParseException{
+        Date hoje = new Date();
+        Vector vecADadosForm = new Vector();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        do{
+            aDateIn = formatter.parse(JOptionPane.showInputDialog("Digite a data de entrada"));
+            if (0>(int) ((hoje.getTime() - aDateIn.getTime()) / 86400000L)){
+                JOptionPane.showMessageDialog(null, "Data inválida (tem que ser menor a"+hoje+")");
+            }
+        }while(0>((int) ((hoje.getTime() - aDateIn.getTime()) / 86400000L)));
+        do{
+            aDateOut = formatter.parse(JOptionPane.showInputDialog("Digite a data de Saida"));
+            if (0>(int) ((aDateIn.getTime() - aDateOut.getTime()) / 86400000L)){
+                JOptionPane.showMessageDialog(null, "Data inválida (tem que ser menor a"+aDateIn+")");
+            }
+        }while(0>(int) ((aDateIn.getTime() - aDateOut.getTime()) / 86400000L));
+        vecADadosForm.add(0 ,aDateIn);
+        vecADadosForm.add(1 ,aDateOut);
+        return vecADadosForm;
+    }
+    
+   
 }
 

@@ -18,24 +18,30 @@ public class entQuarto implements Serializable{
     public entQuarto() {
         
     }
+    
     //gets e seters
     public void setPreco (double pPreco) {
         preco = pPreco;
     }
+    
     public void setNumero (int pNumero) {
         numero = pNumero;
     }
-     public void setDescricao (String pDescricao) {
+     
+    public void setDescricao (String pDescricao) {
          descricao = pDescricao;
     }
      
     public double getPreco () {
        return preco;
     }
+    
     public int getNumero () {
         return numero;
     }
-     public String getDescricao () {
+    
+    public String getDescricao () {
          return descricao ;
     }
+
 }

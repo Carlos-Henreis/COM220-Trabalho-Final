@@ -24,23 +24,22 @@ public class ctrCliente {
         desserializaCliente();
     }
     
-    public boolean cadastrarCliente() {
+    public boolean cadastrarCliente(String pCpf, String pNome,  String pTelefone, String pCep, String pCidade, String pRua, String pNumero) {
         objAEntCliente = new entCliente();
-        do{
-            objAEntCliente.setCpf(objALimCliente.montaFormDadosCPF());
-            if (!CPF_Val(objAEntCliente.getCpf())){
-                objALimCliente.montaFormaCpfInvalido();
-            }   
-        }while (!CPF_Val(objAEntCliente.getCpf()));
-        aDadosForm = objALimCliente.montaForm();
-        objAEntCliente.setTelefone(aDadosForm[0]);
-        objAEntCliente.setNome(aDadosForm[1]);
-        objAEntCliente.setEndereco(aDadosForm[2], aDadosForm[3], aDadosForm[4], aDadosForm[5]);
+        objAEntCliente.setCpf(pCpf);
+        if (!CPF_Val(objAEntCliente.getCpf())){
+            objALimCliente.montaFormaCpfInvalido();
+            return true;
+        }   
+        objAEntCliente.setTelefone(pTelefone);
+        objAEntCliente.setNome(pNome);
+        objAEntCliente.setEndereco (pCep, pCidade, pRua, pNumero);
         addVetor(objAEntCliente);
+        objALimCliente.montaFormaClienteAdd();
         return true;
     }
     
-    private boolean CPF_Val(String pCpfClinte) {
+    public boolean CPF_Val(String pCpfClinte) {
         Vector Clientes = new Vector();
         Clientes =  objCtrPrincipal.getObjCtrCliente().getListaClientes();
         for (int i = 0; i < Clientes.size(); i++){
@@ -48,9 +47,6 @@ public class ctrCliente {
                  return false;
         }
         return true;
-    }
-    private void salva() {
-        
     }
     
     public void addVetor(entCliente pCliente) {
@@ -83,16 +79,24 @@ public class ctrCliente {
         serializaCliente();
     }
     
-        public String imprimeClientes() {
+    
+   
+    public String imprimeClientes() {
         String result = "";
         if (vecClientes.size()==0)
-            result+="Não existem clinetes cadastrados\n";
+           result+="Não existem Clientes cadastrados<br>";
         else{
-            result +=  "Cpf \t Nome \t Telefone\n";
+            result +=  "<CENTER><FONT COLOR=BLUE SIZE=6>Todos os clientes cadastrados</FONT></CENTER><TABLE BORDER=1> "
+                    + "<TR>"
+                    + "<TD>Cpf </TD> "
+                    + "<TD>Nome </TD>"
+                    + "<TD>Telefone </TD>"
+                    + " </TR>";
             for (int intIdx = 0; intIdx < vecClientes.size();intIdx++) {
-                    entCliente objViewDis = (entCliente)vecClientes.elementAt(intIdx);
-                    result += objViewDis.getCpf() + "\t" + objViewDis.getNome() + "\t" + objViewDis.getTelefone() + "\n";
+                entCliente objViewDis = (entCliente)vecClientes.elementAt(intIdx);
+                result +=  "<TR>"+"<TD>"+objViewDis.getCpf()+ "</TD><TD>" +  objViewDis.getNome()+ "</TD><TD>" + objViewDis.getTelefone() +"</TD></TR>";
             }
+            result += "</TABLE>";
         }
         return result;
     }

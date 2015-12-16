@@ -1,7 +1,9 @@
 
 package Model;
+import java.io.Serializable;
 
-public class entPagamento {
+
+public class entPagamento implements Serializable{
     
     //Declaração dos atributos
     double valor;
@@ -24,8 +26,9 @@ public class entPagamento {
 
     public void setSitucao (double pValorP) throws Exception{
         if (situacao+pValorP > 0) {
+            double troco = situacao+pValorP;
             situacao = 0;
-            throw new Exception("Valor pago"+pValorP+"| Troco:"+(situacao+pValorP)+"\n");
+            throw new Exception("Valor pago"+pValorP+"| Troco:"+troco+"\n");
         }
          situacao = situacao+pValorP;
     }
@@ -33,6 +36,7 @@ public class entPagamento {
     public double getPreco () {
        return valor;
     }
+    
     public double getSituacao () {
          return situacao ;
     }

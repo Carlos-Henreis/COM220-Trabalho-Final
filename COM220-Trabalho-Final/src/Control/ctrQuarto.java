@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Control;
 
 import Model.*;
@@ -10,10 +5,6 @@ import View.*;
 import java.io.*;
 import java.util.Vector;
 
-/**
- *
- * @author carlos
- */
 public class ctrQuarto {
     
     //Declaração dos atributos
@@ -47,6 +38,66 @@ public class ctrQuarto {
     
     public void addVetor(entQuarto pQuarto) {
         vecQuartos.add(pQuarto);
+    }
+    
+    
+    public void RmQuarto (){
+        int num;
+        if (vecQuartos.size() == 0){
+            objALimQuarto.montaFormVazio();
+        }
+        else{
+            do{
+                num  = Integer.parseInt(objALimQuarto.montaFormNumQuarto());
+                objALimQuarto.montaFormEnc();
+            }while(!Quarto_Cad(num));
+            RemoveQuarto (num);
+        }
+    }
+    
+    private void RemoveQuarto (int pNumero) {
+        for (int z = 0; z < vecQuartos.size(); z++) {
+            if (((entQuarto)vecQuartos.elementAt(z)).getNumero() == pNumero){
+                vecQuartos.removeElementAt(z);
+                objALimQuarto.montaFormRmQuarto();
+            }
+        }
+    }
+    
+    
+    
+    public void AlteraQuarto (){
+        int num;
+        if (vecQuartos.size() == 0){
+            objALimQuarto.montaFormVazio();
+        }
+        else{
+            do{
+                num  = Integer.parseInt(objALimQuarto.montaFormNumQuarto());
+                objALimQuarto.montaFormEnc();
+            }while(!Quarto_Cad(num));
+            AlteraQt (num);
+        }
+    }
+    
+    public void AlteraQt (int pNumero) {
+        aDadosForm = objALimQuarto.montaFormNovo();
+        for (int z = 0; z < vecQuartos.size(); z++) {
+            if (((entQuarto)vecQuartos.elementAt(z)).getNumero() == pNumero){
+                ((entQuarto)vecQuartos.elementAt(z)).setNumero(Integer.parseInt(aDadosForm[0]));
+                ((entQuarto)vecQuartos.elementAt(z)).setPreco(Double.parseDouble(aDadosForm[1]));
+                ((entQuarto)vecQuartos.elementAt(z)).setDescricao(aDadosForm[2]);
+                objALimQuarto.montaFormAlteraQuarto();
+            }
+        }
+    }
+    
+    private boolean Quarto_Cad(int num) {
+        for (int i = 0; i < vecQuartos.size(); i++){
+             if(num == ((entQuarto)vecQuartos.elementAt(i)).getNumero())
+                 return true;
+        }
+        return false;
     }
     
     private void serializaQuarto() throws Exception {
